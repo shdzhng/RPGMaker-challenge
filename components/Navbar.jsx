@@ -7,7 +7,7 @@ const Navbar = ({ toggleTheme, theme }) => {
     <NavBar>
       <NavContainer>
         <h2>🧙🏻‍♂️ RPG Character Maker ⚔️</h2>
-        <ThemeButton currentTheme={theme} onClick={toggleTheme}></ThemeButton>
+        <ThemeButton currentTheme={theme} onClick={toggleTheme} />
       </NavContainer>
     </NavBar>
   );
@@ -32,6 +32,7 @@ const NavContainer = styled.div`
   position: relative;
 
   h2 {
+    width: 100%;
     text-align: center;
   }
 `;
