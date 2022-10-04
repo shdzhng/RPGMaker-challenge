@@ -32,7 +32,6 @@ const NavContainer = styled.div`
   position: relative;
 
   h2 {
-    flex-grow: 1;
     text-align: center;
   }
 `;
