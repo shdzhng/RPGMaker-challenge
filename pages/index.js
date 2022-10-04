@@ -1,9 +1,11 @@
 import Head from 'next/head';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { flexCol } from '../styles/templates';
+import Form from '../components/Form';
 
 export default function Home() {
   return (
-    <div>
+    <Main>
       <Head>
         <title>RPG Character Maker</title>
         <meta
@@ -13,25 +15,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Main>
-        <p>Welcome to the RPG Character Maker!</p>
-        <p>Let's start off with your Character's name</p>
-        <input></input>
-        <button> submit</button>
-        <p>Hello _____! Please select the class you would like to play.</p>
-        <div>
-          <button>Warrior</button>
-          <button>Wizard</button>
-          <button>Rogue</button>
-        </div>
-        <p>
-          A fine choice. You will be a fantastic _____! Finally, when were you
-          born?
-        </p>
-        <input type="date"></input>
-        <button>submit</button>
-      </Main>
-    </div>
+      <Form />
+    </Main>
   );
 }
 
@@ -39,8 +24,9 @@ const Main = styled.main`
   background-color: ${({ theme }) => theme.background.primary};
   height: 95vh;
   width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
+  ${flexCol}
+  justify-content: center;
 `;
+
+
+
