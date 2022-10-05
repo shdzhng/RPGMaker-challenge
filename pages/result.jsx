@@ -1,28 +1,37 @@
 import React, { useState, useRef, useContext } from 'react';
-import { Main } from '../components/component.styles';
+import { Main, FormsContainer } from '../components/component.styles';
 import { UserContext } from './_app';
 import Head from 'next/head';
-import wizardPhoto from '../assets/wizard.png';
-import roguePhoto from '../assets/rogue.png';
-import warriorPhoto from '../assets/warrior.png';
 import Image from 'next/image';
 
 const character = () => {
   const [data, setData] = useContext(UserContext);
 
+  if (data.class === null) data.class = 'druid';
+
   return (
     <Main>
-      <Head>
-        <title>My Character @ RPG Maker</title>
-        <meta name="" content=""></meta>
-      </Head>
-      <p>{`Greetings ${data.name ? data.name : 'Unnamed One'}, born on ${
-        data.birthday ? data.birthday : 'the darkest night of the century'
-      }. You will be a legendary ${
-        data.class ? data.class : 'Bringer of Doom'
-      }!`}</p>
+      <FormsContainer>
+        <Head>
+          <title>My Character @ RPG Maker</title>
+          <meta name="" content=""></meta>
+        </Head>
 
-      {/* <Image layout="fill" src={`${data.class}Photo`} alt={data.class} /> */}
+        <p>
+          {data.name
+            ? `Greetings ${data.name}, born on ${data.birthday}. You will be a legendary ${data.class}`
+            : `Greetings Unnamed One. Unimpressed by the pre-destinated class options infront of you, you sought the power of Time. During your travel across Time, you witnessed the collapse of civilization at the tailend of the Anthropocene. Burdened by what you've seen, you chose to be re-born with a natural affinity for the wild and will join a circle of druid activists to combat climate change'
+          . You will be a legendary ${data.class}`}
+        </p>
+
+        <Image
+          width="350px"
+          height="494px"
+          layout="intrinsic"
+          src={`/${data.class}.png`}
+          alt={data.class}
+        />
+      </FormsContainer>
     </Main>
   );
 };
