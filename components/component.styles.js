@@ -142,6 +142,7 @@ export const FormsContainer = styled.form`
   width: 90%;
   height: 90%;
   ${flexCol}
+  overflow: hidden;
   padding: 20px;
 `;
 
