@@ -56,6 +56,7 @@ export const SubmitButton = styled.button`
   font-size: 1.5rem;
   transition: all 100ms ease-in;
 
+  /// button text change on hover
   &:before {
     content: 'EMBARK ON ADVENTURE?';
   }
@@ -140,7 +141,7 @@ export const FormsContainer = styled.form`
   padding: 20px;
 `;
 
-///styled according to based on input type
+
 export const InputContainer = styled.div`
   ${inputContainerDefault};
   height: 40px;
@@ -163,72 +164,55 @@ export const InputContainer = styled.div`
       color: ${({ theme }) => theme.text.secondary + '80'};
     }
     border-radius: 10px 0 0 10px;
-  }
-
-  /// if disabled
-  input {
     &:disabled {
       color: ${({ theme }) => theme.text.secondary};
     }
   }
 
-  ///text type styling
-  :has(input[type='text']:active, input[type='text']:focus) {
+  //animate text input on focus
+  :has(input[type='text']:focus) {
     height: 60px;
   }
+`;
 
-  ///radio type styling
-  :has(input[type='radio']) {
-    div {
-      display: flex;
-      padding: 0 1rem;
-      justify-content: center;
-      align-items: center;
-      color: ${({ theme }) => theme.text.secondary};
-      background-color: ${({ theme }) => theme.accent + '90'};
-      transition: inherit;
+export const ClassButton = styled.button`
+  color: ${({ theme }) => theme.text.secondary};
+  background-color: ${({ theme }) => theme.accent + '90'};
+  border: none;
+  padding: 0 2rem;
 
-      &:not(:has(:checked)):hover {
-        background-color: ${({ theme }) => theme.accent};
-      }
-
-      &:first-child {
-        border-radius: 2rem 0 0 2rem;
-      }
-      &:last-child {
-        border-radius: 0 2rem 2rem 0;
-      }
-      :has(:checked) {
-        background-color: ${({ theme }) => theme.background.secondary};
-      }
-      :has(:disabled) {
-        color: ${({ theme }) => theme.text.secondary};
-        background-color: ${({ theme }) => theme.disabled};
-        :has(:checked) {
-          background-color: ${({ theme }) => theme.background.secondary};
-        }
-      }
-    }
+  &:first-of-type {
+    border-radius: 2rem 0 0 2rem;
+  }
+  &:last-of-type {
+    border-radius: 0 2rem 2rem 0;
   }
 
-  input[type='radio'] {
-    -webkit-appearance: none;
-    appearance: none;
-    height: 0;
+  // transition animations
+  &:disabled {
+    color: ${({ theme }) => theme.text.secondary};
+    background-color: ${({ theme, selected }) =>
+      selected === true ? theme.background.secondary : theme.disabled};
   }
+  &:focus {
+    height: 60px;
+  }
+  &:hover:not(:disabled) {
+    background-color: ${({ theme }) => theme.accent};
+  }
+`;
 
-  button {
-    background-color: ${({ theme }) => theme.accent + '95'};
-    border: none;
-    border-radius: 0 10px 10px 0px;
-    &:hover {
-      background-color: ${({ theme }) => theme.accent};
-    }
-    &:active {
-      background-color: ${({ theme }) => theme.accent + '90'};
-    }
-    &:disabled {
-      background-color: ${({ theme }) => theme.disabled};
-    }
+export const ConfirmButton = styled.button`
+  background-color: ${({ theme }) => theme.accent + '95'};
+  border: none;
+  border-radius: 0 10px 10px 0px;
+  &:hover {
+    background-color: ${({ theme }) => theme.accent};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.accent + '90'};
+  }
+  &:disabled {
+    background-color: ${({ theme }) => theme.disabled};
   }
 `;

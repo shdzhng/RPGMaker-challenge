@@ -4,6 +4,8 @@ import {
   FormsContainer,
   InputContainer,
   SubmitButton,
+  ConfirmButton,
+  ClassButton,
 } from './component.styles';
 import { useRouter } from 'next/router';
 import { UserContext } from '../pages/_app.jsx';
@@ -36,7 +38,7 @@ const Form = () => {
             disabled={data.name ? true : false}
             required
           />
-          <button
+          <ConfirmButton
             disabled={data.name ? true : false}
             onClick={(e) => {
               e.preventDefault();
@@ -53,7 +55,7 @@ const Form = () => {
             }}
           >
             confirm
-          </button>
+          </ConfirmButton>
         </InputContainer>
       </FormContainer>
 
@@ -69,21 +71,20 @@ const Form = () => {
 
             <InputContainer>
               {CLASS_OPTIONS.map((option, i) => (
-                <div key={option}>
-                  <input
-                    disabled={data.class ? true : false}
-                    name="classSelect"
-                    type="radio"
-                    id={option}
-                    value={option}
-                    onChange={({ target }) => {
-                      setData((prev) => {
-                        return { ...prev, class: target.value };
-                      });
-                    }}
-                  />
-                  <label htmlFor={option}>{option}</label>
-                </div>
+                <ClassButton
+                  key={option}
+                  selected={option === data.class}
+                  disabled={data.class ? true : false}
+                  name="classSelect"
+                  value={option}
+                  onClick={({ target }) => {
+                    setData((prev) => {
+                      return { ...prev, class: target.value };
+                    });
+                  }}
+                >
+                  {option}
+                </ClassButton>
               ))}
             </InputContainer>
           </fieldset>
@@ -102,7 +103,7 @@ const Form = () => {
               disabled={data.birthday ? true : false}
               required
             />
-            <button
+            <ConfirmButton
               disabled={data.birthday ? true : false}
               onClick={(e) => {
                 e.preventDefault();
@@ -116,11 +117,13 @@ const Form = () => {
               }}
             >
               confirm
-            </button>
+            </ConfirmButton>
           </InputContainer>
         </FormContainer>
       )}
-      {data.birthday !== null && <SubmitButton type="submit"></SubmitButton>}
+      <FormContainer>
+        {data.birthday !== null && <SubmitButton type="submit" />}
+      </FormContainer>
     </FormsContainer>
   );
 };
