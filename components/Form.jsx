@@ -12,25 +12,21 @@ import { useRouter } from 'next/router';
 import { UserContext } from '../pages/_app.jsx';
 
 const CLASS_OPTIONS = ['Warrior', 'Wizard', 'Rogue'];
+const DEFAULT_ERROR_STATE = {
+  name: null,
+  birthday: null,
+};
 
 const Form = () => {
   const router = useRouter();
+
   const nameRef = useRef();
   const classRef = useRef();
   const birthdayRef = useRef();
 
   const [data, setData] = useContext(UserContext);
-  const [error, setError] = useState({
-    name: null,
-    birthday: null,
-  });
-
-  const resetErrors = () => {
-    setError({
-      name: null,
-      birthday: null,
-    });
-  };
+  const [error, setError] = useState(DEFAULT_ERROR_STATE);
+  const resetErrors = () => setError(DEFAULT_ERROR_STATE);
 
   return (
     <FormsContainer
@@ -123,8 +119,6 @@ const Form = () => {
               disabled={data.birthday ? true : false}
               onClick={(e) => {
                 e.preventDefault();
-
-                console.log(birthdayRef.current.value);
                 if (birthdayRef.current.value === '') {
                   setError((prev) => {
                     return { ...prev, birthday: 'Date Cannot Be Blank' };
