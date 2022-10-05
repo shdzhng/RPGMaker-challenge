@@ -4,8 +4,8 @@ import { UserContext } from './_app';
 import Head from 'next/head';
 import Image from 'next/image';
 
-const character = () => {
-  const [data, setData] = useContext(UserContext);
+const Result = () => {
+  const [data] = useContext(UserContext);
 
   if (data.class === null) data.class = 'druid';
 
@@ -19,9 +19,8 @@ const character = () => {
 
         <p>
           {data.name
-            ? `Greetings ${data.name}, born on ${data.birthday}. You will be a legendary ${data.class}`
-            : `Greetings Unnamed One. Unimpressed by the pre-destinated class options infront of you, you sought the power of Time. During your travel across Time, you witnessed the collapse of civilization at the tailend of the Anthropocene. Burdened by what you've seen, you chose to be re-born with a natural affinity for the wild and will join a circle of druid activists to combat climate change'
-          . You will be a legendary ${data.class}`}
+            ? `Greetings ${data.name}, born on ${data.birthday}. You will be a legendary ${data.class}!`
+            : `Greetings Unnamed One. Unimpressed by the pre-destinated class options infront of you, you sought the power of Time. While traveling across Time, you witnessed the collapse of civilization at the tailend of the Anthropocene. Burdened by what you've seen, you chose to be re-born with a natural affinity for the wild and will join a circle of druid activists to combat climate change. You will be a legendary ${data.class}!`}
         </p>
 
         <Image
@@ -36,4 +35,4 @@ const character = () => {
   );
 };
 
-export default character;
+export default Result;

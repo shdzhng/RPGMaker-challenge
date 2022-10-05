@@ -6,6 +6,10 @@ export const flexCol = css`
   align-items: center;
 `;
 
+export const HelperText = styled.label`
+  color: ${({ theme }) => theme.accent};
+`;
+
 export const Main = styled.main`
   background-color: ${({ theme }) => theme.background.primary};
   height: 95vh;

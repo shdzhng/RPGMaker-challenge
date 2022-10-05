@@ -6,6 +6,7 @@ import {
   SubmitButton,
   ConfirmButton,
   ClassButton,
+  HelperText,
 } from './component.styles';
 import { useRouter } from 'next/router';
 import { UserContext } from '../pages/_app.jsx';
@@ -19,6 +20,17 @@ const Form = () => {
   const birthdayRef = useRef();
 
   const [data, setData] = useContext(UserContext);
+  const [error, setError] = useState({
+    name: null,
+    birthday: null,
+  });
+
+  const resetErrors = () => {
+    setError({
+      name: null,
+      birthday: null,
+    });
+  };
 
   return (
     <FormsContainer
@@ -29,7 +41,7 @@ const Form = () => {
     >
       {data.name === null && <h1>Welcome to the RPG Character Maker!</h1>}
       <FormContainer>
-        <p>Let's start off with your Character's name</p>
+        <p>Let&apos;s start off with your Character&apos;s name</p>
         <InputContainer>
           <input
             ref={nameRef}
@@ -46,8 +58,11 @@ const Form = () => {
                 nameRef.current.value === null ||
                 nameRef.current.value === ''
               ) {
-                alert('name cannot be empty');
+                setError((prev) => {
+                  return { ...prev, name: 'Gotta have a name' };
+                });
               } else {
+                resetErrors();
                 setData((prev) => {
                   return { ...prev, name: nameRef.current.value };
                 });
@@ -57,6 +72,7 @@ const Form = () => {
             confirm
           </ConfirmButton>
         </InputContainer>
+        {error.name && <HelperText>{error.name}</HelperText>}
       </FormContainer>
 
       {data.name !== null && (
@@ -107,9 +123,14 @@ const Form = () => {
               disabled={data.birthday ? true : false}
               onClick={(e) => {
                 e.preventDefault();
-                if (birthdayRef.current.value === null) {
-                  alert('not a valid date');
+
+                console.log(birthdayRef.current.value);
+                if (birthdayRef.current.value === '') {
+                  setError((prev) => {
+                    return { ...prev, birthday: 'Date Cannot Be Blank' };
+                  });
                 } else {
+                  resetErrors();
                   setData((prev) => {
                     return { ...prev, birthday: birthdayRef.current.value };
                   });
@@ -119,6 +140,7 @@ const Form = () => {
               confirm
             </ConfirmButton>
           </InputContainer>
+          {error.birthday && <HelperText>{error.birthday}</HelperText>}
         </FormContainer>
       )}
       <FormContainer>
