@@ -140,12 +140,11 @@ export const SubmitButton = styled.button`
 
 export const FormsContainer = styled.form`
   width: 90%;
-  height: 90%;
+  height: 100%;
   ${flexCol}
   overflow: hidden;
   padding: 20px;
 `;
-
 
 export const InputContainer = styled.div`
   ${inputContainerDefault};
@@ -199,11 +198,11 @@ export const ClassButton = styled.button`
     background-color: ${({ theme, selected }) =>
       selected === true ? theme.background.secondary : theme.disabled};
   }
+
+  &:hover:not(:disabled),
   &:focus {
-    height: 60px;
-  }
-  &:hover:not(:disabled) {
     background-color: ${({ theme }) => theme.accent};
+    height: 50px;
   }
 `;
 
@@ -211,12 +210,15 @@ export const ConfirmButton = styled.button`
   background-color: ${({ theme }) => theme.accent + '95'};
   border: none;
   border-radius: 0 10px 10px 0px;
+
   &:hover {
     background-color: ${({ theme }) => theme.accent};
   }
+
   &:active {
     background-color: ${({ theme }) => theme.accent + '90'};
   }
+
   &:disabled {
     background-color: ${({ theme }) => theme.disabled};
   }

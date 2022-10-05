@@ -53,6 +53,11 @@ body {
     }
   }
 
+
+  button:focus{
+    outline:0;
+  }
+
   span{
     color: ${({ theme }) => theme.accent};
 

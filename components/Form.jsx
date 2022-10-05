@@ -55,7 +55,7 @@ const Form = () => {
                 nameRef.current.value === ''
               ) {
                 setError((prev) => {
-                  return { ...prev, name: 'Gotta have a name' };
+                  return { ...prev, name: 'Name cannot be empty' };
                 });
               } else {
                 resetErrors();
@@ -70,7 +70,6 @@ const Form = () => {
         </InputContainer>
         {error.name && <HelperText>{error.name}</HelperText>}
       </FormContainer>
-
       {data.name !== null && (
         <FormContainer ref={classRef}>
           <fieldset>
@@ -121,7 +120,7 @@ const Form = () => {
                 e.preventDefault();
                 if (birthdayRef.current.value === '') {
                   setError((prev) => {
-                    return { ...prev, birthday: 'Date Cannot Be Blank' };
+                    return { ...prev, birthday: 'Date cannot be blank' };
                   });
                 } else {
                   resetErrors();
