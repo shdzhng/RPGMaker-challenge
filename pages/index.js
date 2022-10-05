@@ -1,6 +1,7 @@
 import Head from 'next/head';
-import styled, { css } from 'styled-components';
-import { flexCol } from '../styles/templates';
+import styled from 'styled-components';
+import { flexCol } from '../components/component.styles';
+
 import Form from '../components/Form';
 
 export default function Home() {
@@ -14,7 +15,6 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <Form />
     </Main>
   );
