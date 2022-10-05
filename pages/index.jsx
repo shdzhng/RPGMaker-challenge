@@ -1,7 +1,5 @@
 import Head from 'next/head';
-import styled from 'styled-components';
-import { flexCol } from '../components/component.styles';
-
+import { Main } from '../components/component.styles';
 import Form from '../components/Form';
 
 export default function Home() {
@@ -19,14 +17,3 @@ export default function Home() {
     </Main>
   );
 }
-
-const Main = styled.main`
-  background-color: ${({ theme }) => theme.background.primary};
-  height: 95vh;
-  width: 100vw;
-  ${flexCol}
-  justify-content: center;
-`;
-
-
-

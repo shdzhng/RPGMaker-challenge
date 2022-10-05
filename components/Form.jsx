@@ -1,28 +1,28 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import {
   FormContainer,
   FormsContainer,
   InputContainer,
   SubmitButton,
 } from './component.styles';
+import { useRouter } from 'next/router';
+import { UserContext } from '../pages/_app.jsx';
 
 const CLASS_OPTIONS = ['Warrior', 'Wizard', 'Rogue'];
 
 const Form = () => {
+  const router = useRouter();
   const nameRef = useRef();
   const classRef = useRef();
   const birthdayRef = useRef();
-  const [data, setData] = useState({
-    name: null,
-    class: null,
-    birthday: null,
-  });
+
+  const [data, setData] = useContext(UserContext);
 
   return (
     <FormsContainer
       onSubmit={(e) => {
         e.preventDefault();
-        console.log({ data });
+        router.push(`/result`);
       }}
     >
       {data.name === null && <h1>Welcome to the RPG Character Maker!</h1>}
@@ -30,10 +30,11 @@ const Form = () => {
         <p>Let's start off with your Character's name</p>
         <InputContainer>
           <input
+            ref={nameRef}
             type="text"
             placeholder="enter character name"
-            ref={nameRef}
             disabled={data.name ? true : false}
+            required
           />
           <button
             disabled={data.name ? true : false}
@@ -99,6 +100,7 @@ const Form = () => {
               type="date"
               ref={birthdayRef}
               disabled={data.birthday ? true : false}
+              required
             />
             <button
               disabled={data.birthday ? true : false}

@@ -6,6 +6,14 @@ export const flexCol = css`
   align-items: center;
 `;
 
+export const Main = styled.main`
+  background-color: ${({ theme }) => theme.background.primary};
+  height: 95vh;
+  width: 100vw;
+  ${flexCol}
+  justify-content: center;
+`;
+
 const inputContainerDefault = css`
   display: flex;
   width: 100%;
