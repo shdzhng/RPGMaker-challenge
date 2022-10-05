@@ -27,7 +27,7 @@ const Result = () => {
           width="350px"
           height="494px"
           layout="intrinsic"
-          src={`/${data.class}.png`}
+          src={`/${data.class.toLowerCase()}.png`}
           alt={data.class}
         />
       </FormsContainer>
