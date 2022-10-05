@@ -1,5 +1,5 @@
 import { ThemeProvider } from 'styled-components';
-import React, { useState, useContext, createContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { GlobalStyles, lightTheme, darkTheme } from '../styles/globalStyles';
 import Navbar from '../components/Navbar';
 
@@ -12,6 +12,30 @@ function MyApp({ Component, pageProps }) {
     class: null,
     birthday: null,
   });
+
+  useEffect(() => {
+    const checkBrowserColorScheme = () => {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        setTheme('dark');
+        console.log('default darktheme detected, changed theme to dark');
+      }
+    };
+
+    setTimeout(() => {
+      checkBrowserColorScheme();
+    }, 500);
+
+    const handleEvent = (event) => {
+      const colorScheme = event.matches ? 'dark' : 'light';
+      setTheme(colorScheme); // "dark" or "light"
+    };
+
+    window
+      .matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', handleEvent);
+
+    return () => window.removeEventListener('change', handleEvent);
+  }, []);
 
   const toggleTheme = () => {
     theme == 'light' ? setTheme('dark') : setTheme('light');
