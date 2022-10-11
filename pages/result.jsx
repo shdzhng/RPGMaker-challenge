@@ -14,7 +14,7 @@ const Result = () => {
       <FormsContainer>
         <Head>
           <title>My Character @ RPG Maker</title>
-          <meta name="" content=""></meta>
+          <meta name="" content="" />
         </Head>
 
         <p>
@@ -23,13 +23,17 @@ const Result = () => {
             : `Greetings Unnamed One. Unimpressed by the pre-destinated class options infront of you, you sought the power of Time. While traveling across Time, you witnessed the collapse of civilization at the tailend of the Anthropocene. Burdened by what you've seen, you chose to be re-born with a natural affinity for the wild and will join a circle of druid activists to combat climate change. You will be a legendary ${data.class}!`}
         </p>
 
-        <Image
-          width="350px"
-          height="494px"
-          layout="intrinsic"
-          src={`/${data.class.toLowerCase()}.png`}
-          alt={data.class}
-        />
+        <div
+          id="result-image-container"
+          style={{ width: '100%', height: '600px', position: 'relative' }}
+        >
+          <Image
+            layout="fill"
+            objectFit="contain"
+            src={`/${data.class.toLowerCase()}.png`}
+            alt={data.class}
+          />
+        </div>
       </FormsContainer>
     </Main>
   );
